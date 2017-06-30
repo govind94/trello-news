@@ -16,15 +16,15 @@ function dataFetch(source)
 }
 
 var newsCategory = {
-  'General': 'the-new-york-times',
-  'Technology': 'hacker-news',
-  'Sport': 'espn',
-  'Business': 'business-insider',
-  'Politics': 'breitbart-news',
-  'Entertainment': 'buzzfeed',
-  'Music': 'mtv-news',
-  'Science and Nature': 'national-geographic',
-  'Gaming': 'ign'
+  'ge': 'the-new-york-times',
+  't': 'hacker-news',
+  's': 'espn',
+  'b': 'business-insider',
+  'p': 'breitbart-news',
+  'e': 'buzzfeed',
+  'm': 'mtv-news',
+  'sn': 'national-geographic',
+  'ga': 'ign'
 }
 
 // Elements with IDs are available as properties of `window`.
@@ -35,7 +35,7 @@ window.estimate.addEventListener('submit', function(event){
   .then(function(){
     console.log("5");
     var source = newsCategory[window.newsSource.value];
-    return dataFetch(source)
+    return dataFetch(window.newsSource.value)
   })
   .then(function(json) {
     console.log("7");
