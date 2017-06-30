@@ -4,7 +4,7 @@ var t = TrelloPowerUp.iframe();
 
 function getUrl(source)
 {
-  return 'https://newsapi.org/v1/articles?source='+source+'&sortBy=popular&apiKey=8c2a4afcffb74f4faee17b68d0b3fc18';
+  return 'https://newsapi.org/v1/articles?source='+source+'&sortBy=top&apiKey=8c2a4afcffb74f4faee17b68d0b3fc18';
 }
 
 function dataFetch(source)
@@ -35,11 +35,15 @@ window.estimate.addEventListener('submit', function(event){
   .then(function(){
     console.log("5");
     var source = newsCategory[window.newsSource.value];
-    return dataFetch(window.newsSource.value)
+    return dataFetch(source)
   })
   .then(function(json) {
     console.log("7");
     window.open(json.articles[0].url);
+  })
+  .catch(function() {
+    console.log('bad request');
+    throw t.NotHandled();
   })
   .then(function(){
     t.closePopup();

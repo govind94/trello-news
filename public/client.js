@@ -14,5 +14,11 @@ TrelloPowerUp.initialize({
         });
       }
 		}];
-	}
+	},
+  'card-from-url': function(t, options) {
+    return {
+      name: 'Suitable name based on options.url',
+      desc: 'Suitable description based on options.url'
+    };
+  }
 });
