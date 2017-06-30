@@ -1,21 +1,18 @@
-var https = require('https');
 /* global TrelloPowerUp */
 
 var t = TrelloPowerUp.iframe();
 
-function httpsGet(url, callback) 
+function getUrl(source)
 {
-    https.get(url, function(res) {
-        var body = '';
-        res.on('data', function(data) {
-            body += data;
-        });
-        res.on('end', function() {
-            callback(body);
-        });
-    }).on('error', function(e){
-    console.log('Error: ' + e);
-    });
+  return 'https://newsapi.org/v1/articles?source='+source+'&sortBy=popular&apiKey=8c2a4afcffb74f4faee17b68d0b3fc18';
+}
+
+function dataFetch(source)
+{
+  return fetch(getUrl(source))
+    .then(function(response) {
+      return response.json();
+    })
 }
 
 var newsCategory = {
@@ -38,11 +35,11 @@ window.estimate.addEventListener('submit', function(event){
   .then(function(){
     console.log("5");
     var source = newsCategory[window.newsSource.value];
-    var url = 'https://newsapi.org/v1/articles?source='+source+'&sortBy=popular&apiKey=8c2a4afcffb74f4faee17b68d0b3fc18';
-    httpsGet(url, function(response) {
-      var result = JSON.parse(response);
-      window.open(result.articles[0].url)
-    }
+    return dataFetch(source)
+  })
+  .then(function(json) {
+    console.log("7");
+    window.open(json.articles[0].url);
   })
   .then(function(){
     t.closePopup();
