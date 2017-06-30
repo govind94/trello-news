@@ -6,11 +6,12 @@ var t = TrelloPowerUp.iframe();
 window.estimate.addEventListener('submit', function(event){
   // Stop the browser trying to submit the form itself.
   event.preventDefault();
-  return t.popup({
-          title: "Trello-News",
-          url: 'try.html',
-        })
+  return t.set('card', 'private', 'estimate', window.newsSource.value)
   .then(function(){
+    console.log("5");
+    return 5;
+  })
+  .then(function(five){
     t.closePopup();
   });
 });
