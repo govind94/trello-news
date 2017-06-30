@@ -6,23 +6,13 @@ TrelloPowerUp.initialize({
 	'card-buttons': function(t, options) {
 		return [{
 			icon: "http://www.thelegacy.us/images/categories/Tech-News.jpg",
-			text: 'Tech-News',
+			text: 'Trello-News',
       callback: function(t) {
         return t.popup({
-          title: "Tech-News",
+          title: "Trello-News",
           url: 'estimate.html',
         });
       }
-		},
-    {
-      icon: "http://www.thelegacy.us/images/categories/Tech-News.jpg",
-      text: 'Tech-News',
-      callback: function(t) {
-        return t.popup({
-          title: "Tech-News",
-          url: 'estimate.html',
-        });
-      }
-    }];
+		}];
 	}
 });
