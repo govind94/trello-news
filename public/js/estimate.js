@@ -6,14 +6,14 @@ var t = TrelloPowerUp.iframe();
 window.estimate.addEventListener('submit', function(event){
   // Stop the browser trying to submit the form itself.
   event.preventDefault();
-  return t.set('card', 'shared', 'estimate', window.newsSource.value)
+  return t.set('card', 'private', 'estimate', window.newsSource.value)
   .then(function(){
     t.closePopup();
   });
 });
 
 t.render(function(){
-  return t.get('card', 'shared', 'estimate')
+  return t.get('card', 'private', 'estimate')
   .then(function(estimate){
     window.newsSource.value = estimate;
   })
