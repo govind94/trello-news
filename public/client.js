@@ -13,6 +13,16 @@ TrelloPowerUp.initialize({
           url: 'estimate.html',
         });
       }
-		}];
+		},
+    {
+      icon: "http://www.thelegacy.us/images/categories/Tech-News.jpg",
+      text: 'Tech-News',
+      callback: function(t) {
+        return t.popup({
+          title: "Tech-News",
+          url: 'estimate.html',
+        });
+      }
+    }];
 	}
 });
