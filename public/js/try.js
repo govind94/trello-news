@@ -17,7 +17,7 @@ function dataFetch(source)
 
 var newsCategory = {
   'ge': 'the-new-york-times',
-  't': 'hacker-news',
+  't': 'techcrunch',
   's': 'espn',
   'b': 'business-insider',
   'p': 'breitbart-news',
@@ -39,13 +39,17 @@ window.estimate.addEventListener('submit', function(event){
   })
   .then(function(json) {
     console.log("7");
-    window.open(json.articles[0].url);
+    //window.open(json.articles[0].url);
+    t.overlay(function(){
+      url: '../try.html' 
+    });
   })
   .catch(function() {
     console.log('bad request');
     throw t.NotHandled();
   })
   .then(function(){
+    t.closeOverlay();
     t.closePopup();
   });
 });
