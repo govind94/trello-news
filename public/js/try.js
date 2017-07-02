@@ -22,40 +22,38 @@ var newsCategory = {
   'b': 'business-insider',
   'p': 'breitbart-news',
   'e': 'buzzfeed',
-  'm': 'mtv-news',
+  'm': 'mtv-news-uk',
   'sn': 'national-geographic',
   'ga': 'ign'
 }
 
-// Elements with IDs are available as properties of `window`.
 window.estimate.addEventListener('submit', function(event){
-  // Stop the browser trying to submit the form itself.
   event.preventDefault();
-  return t.set('card', 'private', 'estimate', window.newsSource.value)
+  return t.set('board', 'private', 'estimate', window.newsSource.value)
   .then(function(){
     console.log("5");
     var source = newsCategory[window.newsSource.value];
     return dataFetch(source)
   })
-  .then(function(json) {
+  .then(function(jsonResponse) {
     console.log("7");
-    //window.open(json.articles[0].url);
-    t.overlay(function(){
-      url: '../try.html' 
-    });
+    return t.boardBar({
+      url: '../board-bar.html',
+      args: { jsonResponse: jsonResponse },
+      height: 250
+    }); 
   })
   .catch(function() {
     console.log('bad request');
     throw t.NotHandled();
   })
   .then(function(){
-    t.closeOverlay();
     t.closePopup();
   });
 });
 
 t.render(function(){
-  return t.get('card', 'private', 'estimate')
+  return t.get('board', 'private', 'estimate')
   .then(function(estimate){
     window.newsSource.value = estimate;
   })
