@@ -3,23 +3,23 @@
 var Promise = TrelloPowerUp.Promise;
 
 TrelloPowerUp.initialize({
-  'board-buttons': function(t, board) {
+  'board-buttons': function(t, board){
     return [{
-      icon: "https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Fstartup.png?1494946700268",
+      icon: "https://conceptdraw.com/a2648c3/p18/preview/640/pict--news-windows-8-apps---vector-stencils-library.png--diagram-flowchart-example.png",
       text: 'Trello-News',
-      callback: function(t) {
+      callback: function(t){
         return t.popup({
           title: "Trello-News",
-          url: 'estimate.html',
+          url: 'news-category.html',
         });
       }
     }];
   },
-  'card-from-url': function(t, options) {
-    console.log('here');
-    return {
-      name: 'Suitable name based on options.url',
-      desc: 'Suitable description based on options.url'
-    };
+  'show-settings': function(t, options){
+    return t.popup({
+      title: 'Settings',
+      url: 'settings.html',
+      height: 250
+    });
   }
 });

@@ -1,14 +1,14 @@
 {
-  "name": "Trello-News",
-  "details":"Stay up to date with Tech news around the world!",
+  "name": "T-News",
+  "details":"Stay up to date with news around the world!",
   "icon": {
-    "url": "https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Fstartup.png?1494946700268"
+    "url": "https://conceptdraw.com/a2648c3/p18/preview/640/pict--news-windows-8-apps---vector-stencils-library.png--diagram-flowchart-example.png"
   },
-  "author": "GV",
+  "author": "Govindan Vedanarayanan",
   "capabilities": [
     "callback",
-    "card-buttons",
-    "card-from-url"
+    "board-buttons",
+    "show-settings"
   ],
   "connectors": {
     "iframe": {
