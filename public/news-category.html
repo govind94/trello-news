@@ -5,11 +5,14 @@
       select { height: 30px; }
     </style>
     <script src="https://trello.com/power-ups/power-up.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
     <form id="news">
-      <label for="news">Select your news category:</label>
-      <select name="source" id="newsSource">
+      <label for="category">Select your news category:</label>
+      <select name="category" id="newsCategory" required>
+        
+        <option data-group="SHOW" value="">-- Select --</option>
         <option value="General">General</option>
         <option value="Technology">Technology</option>
         <option value="Sport">Sport</option>
@@ -19,9 +22,95 @@
         <option value="Music">Music</option>
         <option value="Science and Nature">Science and Nature</option>
         <option value="Gaming">Gaming</option>
+        
+      </select>
+      <label for="source">Select your news source:</label>
+      <select name="source" id="newsSource" required>
+        
+        <option data-group="SHOW" value="">-- Select --</option>
+        
+        <option data-group="General" value="the-new-york-times">The New York Times</option>
+        <option data-group="General" value="abc-news-au">ABC News (AU)</option>
+        <option data-group="General" value="al-jazeera-english">Al Jazeera English</option>
+        <option data-group="General" value="associated-press">Associated Press</option>
+        <option data-group="General" value="bbc-news">BBC News</option>
+        <option data-group="General" value="cnn">CNN</option>
+        <option data-group="General" value="google-news">Google News</option>
+        <option data-group="General" value="independent">Independent</option>
+        <option data-group="General" value="metro">Metro</option>
+        <option data-group="General" value="mirror">Mirror</option>
+        <option data-group="General" value="the-guardian-uk">The Guardian (UK)</option>
+        <option data-group="General" value="the-hindu">The Hindu</option>
+        <option data-group="General" value="the-huffington-post">The Huffington Post</option>
+        <option data-group="General" value="the-telegraph">The Telegraph</option>
+        <option data-group="General" value="the-times-of-india">The Times of India</option>
+        <option data-group="General" value="the-washington-post">The Washington Post</option>
+        <option data-group="General" value="time">Time</option>
+        <option data-group="General" value="usa-today">USA Today</option>
+        
+        <option data-group="Technology" value="tech-crunch">Tech Crunch</option>
+        <option data-group="Technology" value="ars-technica">Ars Technica</option>
+        <option data-group="Technology" value="engadget">Engadget</option>
+        <option data-group="Technology" value="hacker-news">Hacker News</option>
+        <option data-group="Technology" value="recode">Recode</option>
+        <option data-group="Technology" value="techradar">TechRadar</option>
+        <option data-group="Technology" value="the-next-web">The Next Web</option>
+        <option data-group="Technology" value="the-verge">The Verge</option>
+        
+        <option data-group="Sport" value="espn">ESPN</option>
+        <option data-group="Sport" value="bbc-sport">BBC Sport</option>
+        <option data-group="Sport" value="espn-cric-info">ESPN Cric Info</option>
+        <option data-group="Sport" value="football-italia">Football Italia</option>
+        <option data-group="Sport" value="four-four-two">FourFourTwo</option>
+        <option data-group="Sport" value="fox-sports">Fox Sports</option>
+        <option data-group="Sport" value="nfl-news">NFL News</option>
+        <option data-group="Sport" value="talksport">TalkSport</option>
+        <option data-group="Sport" value="the-sport-bible">The Sport Bible</option>
+        
+        <option data-group="Business" value="business-insider">Business Insider</option>
+        <option data-group="Business" value="bloomberg">Bloomberg</option>
+        <option data-group="Business" value="business-insider-uk">Business Insider (UK)</option>
+        <option data-group="Business" value="cnbc">CNBC</option>
+        <option data-group="Business" value="financial-times">Financial Times</option>
+        <option data-group="Business" value="fortune">Fortune</option>
+        <option data-group="Business" value="the-economist">The Economist</option>
+        <option data-group="Business" value="the-wall-street-journal">The Wall Street Journal</option>
+        
+        <option data-group="Politics" value="breitbart-news">Breitbart News</option>
+        
+        <option data-group="Entertainment" value="buzzfeed">Buzzfeed</option>
+        <option data-group="Entertainment" value="daily-mail">Daily Mail</option>
+        <option data-group="Entertainment" value="entertainment-weekly">Entertainment Weekly</option>
+        <option data-group="Entertainment" value="mashable">Mashable</option>
+        <option data-group="Entertainment" value="the-lad-bible">The Lad Bible</option>
+        
+        <option data-group="Music" value="mtv-news">MTV News</option>
+        <option data-group="Music" value="mtv-news-uk">MTV News (UK)</option>
+        
+        <option data-group="Science and Nature" value="national-geographic">National Geographic</option>
+        <option data-group="Science and Nature" value="new-scientist">New Scientist</option>
+        
+        <option data-group="Gaming" value="ign">IGN</option>
+        <option data-group="Gaming" value="polygon">Polygon</option>
+        
       </select>
       <button type="submit" class="mod-primary">Go!</button>
     </form>
+    
+    <script>
+      $(function(){
+        $('#newsCategory').on('change', function(){
+          console.log('hohoho');
+          var val = $(this).val();
+          var sub = $('#newsSource');
+          $('option', sub).filter(function(){
+            if ($(this).attr('data-group') === val) $(this).show();
+            else $(this).hide();
+        });
+        });
+        $('#newsCategory').trigger('change'); 
+      });
+    </script>
     <script src="./js/news-category.js"></script>
   </body>
 </html>

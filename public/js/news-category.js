@@ -15,26 +15,11 @@ function dataFetch(source, sortBy){
 
 var source;
 var sortBy = ['top', 'latest', 'popular'];
-var newsCategory = {
-  'General': 'the-new-york-times',
-  'Technology': 'techcrunch',
-  'Sport': 'espn',
-  'Business': 'business-insider',
-  'Politics': 'breitbart-news',
-  'Entertainment': 'buzzfeed',
-  'Music': 'mtv-news',
-  'Science and Nature': 'national-geographic',
-  'Gaming': 'ign'
-}
 
 window.news.addEventListener('submit', function(event){
   event.preventDefault();
-  return t.set('board', 'private', 'news', window.newsSource.value)
-  .then(function(){
-    console.log("5");
-    source = newsCategory[window.newsSource.value];
-    return dataFetch(source, sortBy[0]);
-  })
+  source = window.newsSource.value;
+  return dataFetch(source, sortBy[0])
   .then(function(jsonResponse){
     if(jsonResponse.articles === undefined || jsonResponse.articles.length === 0) return dataFetch(source, sortBy[1]);
     else return jsonResponse;
@@ -49,15 +34,16 @@ window.news.addEventListener('submit', function(event){
     .then(function(settings){
       if(settings === "Board-Bar"){
         return t.boardBar({
-          url: '../show-news.html',
-          args: { jsonResponse: jsonResponse, category: window.newsSource.value, type: 'board-bar' },
-          height: 250
+          url: '../show-news-board-bar.html',
+          args: { jsonResponse: jsonResponse, category: window.newsCategory.value },
+          height: 500
         });
       }
       else{
         return t.popup({
-          url: '../show-news.html',
-          args: { jsonResponse: jsonResponse, category: window.newsSource.value, type: 'popup' }
+          url: '../show-news-popup.html',
+          args: { jsonResponse: jsonResponse, category: window.newsCategory.value },
+          height: 700
         });
       }
     });
@@ -69,11 +55,5 @@ window.news.addEventListener('submit', function(event){
 });
 
 t.render(function(){
-  return t.get('board', 'private', 'news')
-  .then(function(news){
-    window.newsSource.value = news;
-  })
-  .then(function(){
     t.sizeTo('#news').done();
-  });
 });
