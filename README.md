@@ -1,6 +1,6 @@
-# trello-news
+# Trello News
 
-A Power-Up for Trello that provides news stories across different news categories
+A Power-Up for Trello that provides news stories across different news categories and sources.
 
 ## Power-Up
 
